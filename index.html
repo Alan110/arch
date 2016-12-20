@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script src="./src/arch.js"></script>
+    <script>
+	var a = new arch({
+	    data : {
+		name : 'alan',
+		list : {
+		    sex : 1,
+		    sex2 : 2
+		},
+		age : 12,
+		sayHelo : function(){
+		    console.log('you cant change me');
+		}
+	    },
+
+	    watch : {
+		"name" : function(old, newvalue){
+		    console.log(old,newvalue);
+		    this.sayHelo();
+		},
+
+		"list" : {
+		    "sex" : function(old,newvalue){
+			console.log(old,newvalue);
+			this.sayHelo();
+		    }
+		}
+	    }
+	});
+    </script>
+</html>
