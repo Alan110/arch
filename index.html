@@ -5,34 +5,49 @@
         <title>Document</title>
     </head>
     <body></body>
-    <script src="./src/arch.js"></script>
+    <script src="http://cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+    <script src="./dist/src/arch.js"></script>
     <script>
-	var a = new arch({
-	    data : {
-		name : 'alan',
-		list : {
-		    sex : 1,
-		    sex2 : 2
-		},
-		age : 12,
-		sayHelo : function(){
-		    console.log('you cant change me');
-		}
-	    },
 
-	    watch : {
-		"name" : function(old, newvalue){
-		    console.log(old,newvalue);
-		    this.sayHelo();
-		},
+	require(['./arch'], function(arch) {
+	    var a = new arch({
+	        data: {
+	            name: 'alan',
+	            list: {
+	                sex: 1,
+	                sex2: 2
+	            },
+	            age: 12,
+	            sayHelo: function() {
+	                console.log('you cant change me');
+	            }
+	        },
 
-		"list" : {
-		    "sex" : function(old,newvalue){
-			console.log(old,newvalue);
-			this.sayHelo();
-		    }
-		}
-	    }
+	        watch: {
+	            "name": function(old, newvalue) {
+	                console.log(old, newvalue);
+	                this.sayHelo();
+	            },
+
+	            "list": {
+	                "sex": function(old, newvalue) {
+	                    console.log(old, newvalue);
+	                    this.sayHelo();
+	                }
+	            }
+	        }
+	    });
+
+	    a.vm.list.sex = 'xxx';
+
+	    window.arch = arch;
+
+	    arch.on("click", function(){
+		console.log('click');
+	    });
+
+
 	});
+
     </script>
 </html>
