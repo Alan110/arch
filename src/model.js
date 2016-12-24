@@ -9,8 +9,7 @@ define(['./util.js'],function(util){
 	//var self = this;
 	this.data = option.data || {};
 	this.watchrCallbacks = option.watch || {};
-	this.vm = {};
-	this.bindWatch(this.vm, this.data , this.watchrCallbacks);
+	this.bindWatch(this, this.data , this.watchrCallbacks);
     };
 
     var fn = alan.fn = alan.prototype;
@@ -42,7 +41,7 @@ define(['./util.js'],function(util){
 		    set: function(prop) {
 			return function(value) {
 			    var watchCall = watchrCallbacks[prop];
-			    watchCall && watchCall.call(self.vm, data[prop], value);
+			    watchCall && watchCall.call(self, data[prop], value);
 			    data[prop] = value;
 			};
 		    }(prop)

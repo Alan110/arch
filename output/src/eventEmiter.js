@@ -1,5 +1,5 @@
 
-define('eventEmiter', ['require'], function (require) {
+define('src/eventEmiter', ['require'], function (require) {
 
     function EventEmitter() {}
 

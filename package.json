@@ -1,0 +1,20 @@
+{
+  "name": "arch",
+  "version": "1.0.0",
+  "description": "* 数据绑定 * 视图绑定 * web Componet 组件化",
+  "main": "fis-conf.js",
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "watch": "fis3 release -d ./output -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alan110/arch.git"
+  },
+  "author": "Alan110 <306880673@qq.com> (http://liliumang.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alan110/arch/issues"
+  },
+  "homepage": "https://github.com/Alan110/arch#readme"
+}

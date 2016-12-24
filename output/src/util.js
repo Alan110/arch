@@ -1,4 +1,4 @@
-define('util', ['require'], function(require) {
+define('src/util', ['require'], function(require) {
     return {
         type: function(parm) {
             return Object.prototype.toString.call(parm);

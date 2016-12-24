@@ -6,16 +6,17 @@
     </head>
     <body></body>
     <script src="http://cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
-    <script src="./dist/src/arch.js"></script>
+    <script src="./output/src/arch.js"></script>
     <script>
 
 	require(['./arch'], function(arch) {
 	    var a = new arch({
 	        data: {
 	            name: 'alan',
+		    array : [],
 	            list: {
 	                sex: 1,
-	                sex2: 2
+	                sex2:2
 	            },
 	            age: 12,
 	            sayHelo: function() {
@@ -29,6 +30,10 @@
 	                this.sayHelo();
 	            },
 
+		    "array" : function(old,newvalue){
+			console.log(old,newvalue);
+		    },
+
 	            "list": {
 	                "sex": function(old, newvalue) {
 	                    console.log(old, newvalue);
@@ -38,15 +43,24 @@
 	        }
 	    });
 
-	    a.vm.list.sex = 'xxx';
+	    a.list.array = [1,2,3];
 
 	    window.arch = arch;
 
 	    arch.on("click", function(){
-		console.log('click');
+		a.list.sex = 'f'
 	    });
 
 
+	});
+
+	require(['./ArrayProxy'],function(ArrayProxy){
+	    var arr = new ArrayProxy();
+	    arr.push(123);
+	    arr.push(123);
+	    arr.push(123);
+	    arr.push(123);
+	    console.log(arr);
 	});
 
     </script>

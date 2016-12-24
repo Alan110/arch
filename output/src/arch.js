@@ -1,6 +1,6 @@
 
 
-define('model', ['util'],function(util){
+define('src/model', ['src/util'],function(util){
 
     /**
     * data modol
@@ -10,8 +10,7 @@ define('model', ['util'],function(util){
 	//var self = this;
 	this.data = option.data || {};
 	this.watchrCallbacks = option.watch || {};
-	this.vm = {};
-	this.bindWatch(this.vm, this.data , this.watchrCallbacks);
+	this.bindWatch(this, this.data , this.watchrCallbacks);
     };
 
     var fn = alan.fn = alan.prototype;
@@ -43,7 +42,7 @@ define('model', ['util'],function(util){
 		    set: function(prop) {
 			return function(value) {
 			    var watchCall = watchrCallbacks[prop];
-			    watchCall && watchCall.call(self.vm, data[prop], value);
+			    watchCall && watchCall.call(self, data[prop], value);
 			    data[prop] = value;
 			};
 		    }(prop)
@@ -62,7 +61,7 @@ define('model', ['util'],function(util){
 
 });
 ;
-define('util', ['require'], function(require) {
+define('src/util', ['require'], function(require) {
     return {
         type: function(parm) {
             return Object.prototype.toString.call(parm);
@@ -125,8 +124,31 @@ define('util', ['require'], function(require) {
     };
 });
 ;
+define('src/ArrayProxy', ['require', 'src/util'], function(require){
 
-define('eventEmiter', ['require'], function (require) {
+    var utils = require('src/util');
+
+    function ResponseArray (){
+	this.length = 0;
+    }
+
+    var ArrayProto = Array.prototype;
+    ResponseArray.prototype = Object.create(ArrayProto);
+    ResponseArray.prototype.constructor = ResponseArray;
+
+    utils.extend(ResponseArray.prototype,{
+	push : function(arg){
+	    console.log('i m new push method');
+	    ArrayProto.push.call(this,arg);
+	}
+    });
+    
+    return ResponseArray;
+    
+});
+;
+
+define('src/eventEmiter', ['require'], function (require) {
 
     function EventEmitter() {}
 
@@ -249,19 +271,18 @@ define('eventEmiter', ['require'], function (require) {
 });
 ;
 
-define('arch', ['model', 'util', 'eventEmiter'],function(model, util, Emit){
+define('src/arch', ['src/model', 'src/util', 'src/eventEmiter'],function(model, util, Emit){
 
     /**
-    * event center
-    * @param {} option
-    * @returns {} 
-    */
+     *  对外接口
+     * @param {} option
+     * @returns {} 
+     */
     var arch = function(option) {
 	return new model(option);
-
     };
 
-    var eventCenter = new Emit();
+    var eventCenter = arch.eventCenter = new Emit();
 
     ['on','one','trigger','off'].forEach(function(el,index){
 	arch[el] = function(){
