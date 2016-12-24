@@ -1,5 +1,8 @@
+'use strict';
 
-define('src/eventEmiter', ['require'], function (require) {
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+define('eventEmiter', ['require'], function (require) {
 
     function EventEmitter() {}
 
@@ -24,7 +27,7 @@ define('src/eventEmiter', ['require'], function (require) {
      */
     proto.on = function (evt, listener) {
         var listeners = this._getEventListenersAsObject(evt);
-        var isMulti = typeof listener === 'object';
+        var isMulti = (typeof listener === 'undefined' ? 'undefined' : _typeof(listener)) === 'object';
 
         for (var key in listeners) {
             if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
@@ -118,5 +121,4 @@ define('src/eventEmiter', ['require'], function (require) {
     };
 
     return EventEmitter;
-
 });

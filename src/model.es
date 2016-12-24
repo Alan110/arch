@@ -1,4 +1,4 @@
-define(['./util.js'], function(util) {
+define(['./util.es', './ArrayProxy.es'], function(util, ArrayProxy) {
 
     /**
      * data modol
@@ -10,20 +10,6 @@ define(['./util.js'], function(util) {
         this.watchrCallbacks = option.watch || {};
         this.bindWatch(this, this.data, this.watchrCallbacks);
     };
-
-    //定义类
-    class Point {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        toString() {
-            return '(' + this.x + ', ' + this.y + ')';
-        }
-    }
-
-    let a = 'afds';
 
     var fn = alan.fn = alan.prototype;
 
@@ -41,6 +27,14 @@ define(['./util.js'], function(util) {
             if (util.isObject(data[prop])) {
                 bindObj[prop] = {};
                 this.bindWatch(bindObj[prop], data[prop], watchrCallbacks[prop]);
+            } else if (Array.isArray(data[prop])) {
+                // array 代理
+                this[prop] = new ArrayProxy(data[prop], function(prop) {
+                    return function(old, newvalue) {
+                        var watchCall = watchrCallbacks[prop];
+                        watchCall && watchCall.call(self, old, newvalue);
+                    };
+                }(prop));
             } else {
                 // this 作用域在 this.data
                 // getter/setter 和原始数据不能是同一个属性，不然会死循环。此处将 this.xx -> setter -> this.data.xx 
@@ -52,10 +46,10 @@ define(['./util.js'], function(util) {
                     }(prop),
 
                     set: function(prop) {
-                        return function(value) {
+                        return function(newvalue) {
                             var watchCall = watchrCallbacks[prop];
-                            watchCall && watchCall.call(self, data[prop], value);
-                            data[prop] = value;
+                            watchCall && watchCall.call(self, data[prop], newvalue);
+                            data[prop] = newvalue;
                         };
                     }(prop)
                 });

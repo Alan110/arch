@@ -1,8 +1,8 @@
 
-__inline('./model.js');
-__inline('./util.js');
-__inline('./ArrayProxy.js');
-__inline('./eventEmiter.js');
+__inline('./model.es');
+__inline('./util.es');
+__inline('./ArrayProxy.es');
+__inline('./eventEmiter.es');
 
 define(['./model', './util' , './eventEmiter'],function(model , util, Emit){
 

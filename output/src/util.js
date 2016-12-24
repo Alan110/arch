@@ -1,25 +1,27 @@
-define('src/util', ['require'], function(require) {
+'use strict';
+
+define('util', ['require'], function (require) {
     return {
-        type: function(parm) {
+        type: function type(parm) {
             return Object.prototype.toString.call(parm);
         },
 
-        isObject: function(parm) {
+        isObject: function isObject(parm) {
             return this.type(parm) === '[object Object]';
         },
 
-        isFunction: function(parm) {
+        isFunction: function isFunction(parm) {
             return this.type(parm) === '[object Function]';
         },
 
-	/**
-	 * string,function,object,number
-	 * @param {} type
-	 * @returns {} 
-	 */
-	isTypeEq : function(type,value){
+        /**
+         * string,function,object,number
+         * @param {} type
+         * @returns {} 
+         */
+        isTypeEq: function isTypeEq(type, value) {
             return '[object ' + type + ']' === Object.prototype.toString.call(value).toLocaleLowerCase();
-	},
+        },
 
         /**
          * 继承对象方法
@@ -29,9 +31,9 @@ define('src/util', ['require'], function(require) {
          * @param isDeep 是否深度拷贝
          * @returns number 失败返回-1
          */
-        extend: function (parent, child, isDeep) {
+        extend: function extend(parent, child, isDeep) {
             if (!(this.isObject(parent) && this.isObject(child))) {
-                return  parent;
+                return parent;
             }
 
             if (isDeep) {
@@ -44,19 +46,16 @@ define('src/util', ['require'], function(require) {
 
                         parent[i] = child[i];
                     }
-
                 }
-            }
-            else {
+            } else {
                 for (var j in child) {
                     if (child.hasOwnProperty(j)) {
                         parent[j] = child[j];
                     }
-
                 }
             }
             return parent;
         }
-	
+
     };
 });

@@ -48,19 +48,11 @@
 	    window.arch = arch;
 
 	    arch.on("click", function(){
-		a.list.sex = 'f'
+		a.array.push('123');
+		console.log(a)
 	    });
 
 
-	});
-
-	require(['./ArrayProxy'],function(ArrayProxy){
-	    var arr = new ArrayProxy();
-	    arr.push(123);
-	    arr.push(123);
-	    arr.push(123);
-	    arr.push(123);
-	    console.log(arr);
 	});
 
     </script>

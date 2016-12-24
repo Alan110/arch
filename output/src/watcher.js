@@ -1,3 +1,3 @@
-define('src/watcher', ['require'], function(require){
+"use strict";
 
-});
+define('watcher', ['require'], function (require) {});
