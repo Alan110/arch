@@ -1,10 +1,11 @@
 
-__inline('./model.es');
+/* global define __inline*/
 __inline('./util.es');
+__inline('./Watcher.es');
 __inline('./ArrayProxy.es');
-__inline('./eventEmiter.es');
+__inline('./EventEmiter.es');
 
-define(['./model', './util' , './eventEmiter'],function(model , util, Emit){
+define(['./Watcher', './util' , './EventEmiter'],function(Watcher , util, Emit){
 
     /**
      *  对外接口
@@ -12,7 +13,7 @@ define(['./model', './util' , './eventEmiter'],function(model , util, Emit){
      * @returns {} 
      */
     var arch = function(option) {
-	return new model(option);
+	return new Watcher(option);
     };
 
     var eventCenter = arch.eventCenter = new Emit();
