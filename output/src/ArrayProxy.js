@@ -1,7 +1,5 @@
-'use strict';
-
 /* global define */
-define('ArrayProxy', ['require'], function (require) {
+define('src/ArrayProxy', ['require'], function(require) {
 
     var ArrayProto = Array.prototype;
 
@@ -14,12 +12,12 @@ define('ArrayProxy', ['require'], function (require) {
     ResponseArray.prototype.constructor = ResponseArray;
 
     // 数组不能用setter/getter监听变化，需要使用以下的代理函数
-    ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function (el, index) {
-        ResponseArray.prototype[el] = function () {
+    ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function(el, index) {
+        ResponseArray.prototype[el] = function() {
             var args = ArrayProto.slice.call(arguments);
             ArrayProto[el].apply(this.arr, args);
 
-            var inserted = void 0;
+            let inserted;
             switch (el) {
                 case 'push':
                     inserted = args;
@@ -29,7 +27,7 @@ define('ArrayProxy', ['require'], function (require) {
                     break;
                 case 'splice':
                     inserted = args.slice(2);
-                    break;
+		    break;
             }
 
             // 实时改变，newvalue为改变的对象列表
@@ -37,5 +35,7 @@ define('ArrayProxy', ['require'], function (require) {
         };
     }, this);
 
+
     return ResponseArray;
+
 });

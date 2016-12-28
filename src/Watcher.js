@@ -1,6 +1,6 @@
 
-import util from "./util.es";
-import ArrayProxy from "./ArrayProxy.es";
+import util from "./util.js";
+import ArrayProxy from "./ArrayProxy.js";
 
 /**
  * data modol

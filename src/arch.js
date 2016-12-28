@@ -1,9 +1,9 @@
 
 /* global define __inline*/
-__inline('./util.es');
-__inline('./Watcher.es');
-__inline('./ArrayProxy.es');
-__inline('./EventEmiter.es');
+__inline('./util.js');
+__inline('./Watcher.js');
+__inline('./ArrayProxy.js');
+__inline('./EventEmiter.js');
 
 define(['./Watcher', './util' , './EventEmiter'],function(Watcher , util, Emit){
 
