@@ -15,6 +15,7 @@ module.exports = {
         "semi": [
             2,
             "always"
-        ]
+        ],
+	"no-mixed-spaces-and-tabs" : [0]
     }
 };

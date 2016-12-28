@@ -1,8 +1,8 @@
 'use strict';
 
-define('ArrayProxy', ['require', 'util'], function (require) {
+/* global define */
+define('ArrayProxy', ['require'], function (require) {
 
-    var utils = require('util');
     var ArrayProto = Array.prototype;
 
     function ResponseArray(arr, notify) {
@@ -11,13 +11,13 @@ define('ArrayProxy', ['require', 'util'], function (require) {
     }
 
     ResponseArray.prototype = Object.create(ArrayProto);
-    ResponseArray.prototype.constructor = ResponseArray;;
+    ResponseArray.prototype.constructor = ResponseArray;
 
     // 数组不能用setter/getter监听变化，需要使用以下的代理函数
     ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function (el, index) {
         ResponseArray.prototype[el] = function () {
             var args = ArrayProto.slice.call(arguments);
-            var result = ArrayProto[el].apply(this.arr, args);
+            ArrayProto[el].apply(this.arr, args);
 
             var inserted = void 0;
             switch (el) {
