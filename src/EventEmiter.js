@@ -1,5 +1,5 @@
 
-export class EventEmitter{
+export default class EventEmitter{
 
     _indexOfListener (listeners, listener) {
         var i = listeners.length;

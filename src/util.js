@@ -1,4 +1,4 @@
-
+console.log('aaa');
 var tools =   {
     type: function(parm) {
 	return Object.prototype.toString.call(parm);
@@ -27,22 +27,28 @@ var tools =   {
 	* @param parent 继承者
 	* @param child  被继承者
 	* @param isDeep 是否深度拷贝
+	* @isMerge 数组合并,注意值没有去重
 	* @returns number 失败返回-1
 	*/
-    extend: function (parent, child, isDeep) {
-	if (!(this.isObject(parent) && this.isObject(child))) {
+    extend: function (parent, child, isDeep, isMerge) {
+	if ( typeof parent !== 'object' || typeof child !== 'object') {
 	    return  parent;
 	}
 
 	if (isDeep) {
 	    for (var i in child) {
 		if (child.hasOwnProperty(i)) {
-		    if (this.isObject(child[i])) {
-			parent[i] = this.isArray(child[i]) ? [] : {};
-			arguments.callee(parent[i], child[i], isDeep);
+		    if ( typeof child[i] === 'object') {
+			if (isMerge && Array.isArray(child[i]) && Array.isArray(parent[i]) ) {
+			    var p1 = extend([], parent[i], isDeep);
+			    var c1 = extend([], child[i], isDeep);
+			    parent[i] = p1.concat(c1);
+			}else{
+			    parent[i] = arguments.callee({}, child[i], isDeep);
+			}
+		    }else{
+			parent[i] = child[i];
 		    }
-
-		    parent[i] = child[i];
 		}
 
 	    }
@@ -60,4 +66,5 @@ var tools =   {
 
 };
 
-export {tools};
+export default tools;
+

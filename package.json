@@ -1,20 +1,31 @@
 {
-  "name": "arch",
-  "version": "1.0.0",
-  "description": "* 数据绑定 * 视图绑定 * web Componet 组件化",
-  "main": "fis-conf.js",
-  "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "watch": "fis3 release -d ./output -w"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alan110/arch.git"
-  },
-  "author": "Alan110 <306880673@qq.com> (http://liliumang.com)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Alan110/arch/issues"
-  },
-  "homepage": "https://github.com/Alan110/arch#readme"
+    "name": "arch",
+    "version": "1.0.0",
+    "description": "* 数据绑定 * 视图绑定 * web Componet 组件化",
+    "main": "fis-conf.js",
+    "watch": {
+        "dev": "./src/*.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "node ./build/build.js",
+        "pub": "ENV=pub node ./build/build.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Alan110/arch.git"
+    },
+    "author": "Alan110 <306880673@qq.com> (http://liliumang.com)",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Alan110/arch/issues"
+    },
+    "homepage": "https://github.com/Alan110/arch#readme",
+    "devDependencies": {
+        "babel-preset-es2015-rollup": "^3.0.0",
+        "gulp-rollup": "^2.7.0",
+        "rollup-plugin-babel": "^2.7.1",
+        "rollup-plugin-replace": "^1.1.1",
+        "rollup-plugin-uglify": "^1.0.1"
+    }
 }

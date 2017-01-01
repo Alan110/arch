@@ -1,5 +1,3 @@
-/* global define */
-define(function() {
 
     var ArrayProto = Array.prototype;
 
@@ -33,9 +31,9 @@ define(function() {
             // 实时改变，newvalue为改变的对象列表
             this.notify(this.arr, inserted);
         };
-    }, this);
+    });
 
 
-    return ResponseArray;
+    export default ResponseArray;
 
-});
+

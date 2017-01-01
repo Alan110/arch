@@ -6,11 +6,10 @@
     </head>
     <body></body>
     <!-- <script src="http://cdn.bootcss.com/require.js/2.3.2/require.min.js"></script> -->
-    <script src="./output/src/arch.js"></script>
+    <script src="./dist/arch.js"></script>
     <script>
 
-//	require(['./arch'], function(arch) {
-	    var a = new arch({
+	    var a = arch({
 	        data: {
 	            name: 'alan',
 		    array : [],
@@ -43,15 +42,10 @@
 	        }
 	    });
 
-	    window.arch = arch;
-
-	    arch.on("click", function(){
+	    arch.on("click", function(data){
 		a.array.push('123');
-		console.log(a)
+		console.log(data)
 	    });
-
-
-//	});
 
     </script>
 </html>
