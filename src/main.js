@@ -15,25 +15,16 @@ import util from './util.js';
     * @param {} option
     * @returns {} 
     */
-    var arch = function(option) {
+    var arch = (option) => {
 	return new Watcher(option);
     };
 
     var eventCenter = arch.eventCenter = new Emit();
 
-    ['on', 'one', 'trigger', 'off'].forEach(function(el, index) {
-	arch[el] = function() {
+    ['on', 'one', 'trigger', 'off'].forEach( (el, index) => {
+	arch[el] = () => {
 	    eventCenter[el].apply(eventCenter, arguments);
 	};
     });
-
-var a = util.extend({
-    name:'123',arr: [1,2]
-},{
-    arr: [3,4,5]
-
-},true,true);
-
-console.log(a);
 
  export default arch;

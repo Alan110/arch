@@ -13,9 +13,6 @@ class Watcher {
 	this.data = option.data || {};
 	this.watchrCallbacks = option.watch || {};
 	this.bindWatch(this, this.data, this.watchrCallbacks);
-	if (ENV != 'pub') {
-	    warn('我靠你妹 !!!');
-	}
     }
 
     /**
