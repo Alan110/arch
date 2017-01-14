@@ -22,6 +22,22 @@ gulp.task('js-dev', function() {
         .pipe(gulp.dest('./output/'));
 });
 
+gulp.task('js-pub', function() {
+    gulp.src('./src/main.js')
+	.pipe(sourcemaps.init())
+	    // transform the files here. 
+	    .pipe(rollup({
+		// any option supported by Rollup can be set here. 
+		plugins: [babel()]
+	    },{
+		'format' : 'umd',
+		'moduleName' : 'arch'
+	    }))
+	    //.pipe(replace('ENV',process.env.ENV))
+	.pipe(sourcemaps.write())
+        .pipe(gulp.dest('./output/'));
+});
+
 gulp.task('watch',function(){
     var watcher = gulp.watch('./src/**/*.js',['js-dev']);
 });

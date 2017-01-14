@@ -10,21 +10,21 @@ import Emit from './EventEmiter.js';
 import util from './util.js';
 
 
-    /**
-    *  对外接口
-    * @param {} option
-    * @returns {} 
-    */
-    var arch = (option) => {
-	return new Watcher(option);
+/**
+ *  对外接口
+ * @param {} option
+ * @returns {} 
+ */
+var arch = (option) => {
+    return new Watcher(option);
+};
+
+var eventCenter = arch.eventCenter = new Emit();
+
+['on', 'one', 'trigger', 'off'].forEach((el, index) => {
+    arch[el] = () => {
+        eventCenter[el].apply(eventCenter, arguments);
     };
+});
 
-    var eventCenter = arch.eventCenter = new Emit();
-
-    ['on', 'one', 'trigger', 'off'].forEach( (el, index) => {
-	arch[el] = () => {
-	    eventCenter[el].apply(eventCenter, arguments);
-	};
-    });
-
- export default arch;
+export default arch;

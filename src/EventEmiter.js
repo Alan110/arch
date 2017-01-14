@@ -2,7 +2,7 @@
 export default class EventEmitter{
 
     _indexOfListener (listeners, listener) {
-        var i = listeners.length;
+        let i = listeners.length;
         while (i--) {
             if (listeners[i].listener === listener) {
                 return i;

@@ -1,6 +1,9 @@
 module.exports = {
     "env": {
         "browser": true,
+        "node":true,
+        "amd":true,
+        "mocha":true,
         "es6": true
     },
     "extends": "eslint:recommended",
@@ -13,9 +16,10 @@ module.exports = {
             "unix"
         ],
         "semi": [
-            2,
+            1,
             "always"
         ],
-	"no-mixed-spaces-and-tabs" : [0]
+        "no-unused-vars" : [1],
+        "no-mixed-spaces-and-tabs" : [0]
     }
 };

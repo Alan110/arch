@@ -20,6 +20,8 @@ var tools =   {
 	return '[object ' + type + ']' === Object.prototype.toString.call(value).toLocaleLowerCase();
     },
 
+
+
     /**
 	* 继承对象方法
 	*
