@@ -22,7 +22,7 @@ var arch = (option) => {
 var eventCenter = arch.eventCenter = new Emit();
 
 ['on', 'one', 'trigger', 'off'].forEach((el, index) => {
-    arch[el] = () => {
+    arch[el] = function() {
         eventCenter[el].apply(eventCenter, arguments);
     };
 });

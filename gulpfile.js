@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 gulp.task('js-dev', function() {
     gulp.src('./src/main.js')
-	.pipe(sourcemaps.init())
+//	.pipe(sourcemaps.init())
 	    // transform the files here. 
 	    .pipe(rollup({
 		// any option supported by Rollup can be set here. 
@@ -18,7 +18,7 @@ gulp.task('js-dev', function() {
 		'moduleName' : 'arch'
 	    }))
 	    //.pipe(replace('ENV',process.env.ENV))
-	.pipe(sourcemaps.write())
+//	.pipe(sourcemaps.write())
         .pipe(gulp.dest('./output/'));
 });
 

@@ -11,6 +11,7 @@ export default class EventEmitter{
 
         return -1;
     }
+    
 
     /**
      * registe custom event into event center
